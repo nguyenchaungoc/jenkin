@@ -19,7 +19,7 @@ pipeline {
         string(name: 'MYNAME', defaultValue: 'BI', description: 'my name is BI')
     }
     environment {
-        DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+        DOCKERHUB_CREDENTIALS=credentials('docker')
         NAME = 'DINHLE'
         HOVATEN = 'DINHLEHOANG'
         abc = 'asdf'
@@ -90,18 +90,18 @@ pipeline {
                 
             }
         }
-        stage('Deploying and Cleaning') {
-            steps {
-                echo 'Deploying and cleaning'
-                sh 'docker image rm hoangledinh65/springboot-image:1.0 || echo "this image does not exist" '
-                sh 'docker container stop my-demo-springboot || echo "this container does not exist" '
-                sh 'docker network create jenkins || echo "this network exists"'
-                sh 'echo y | docker container prune '
-                sh 'echo y | docker image prune'
-                sh 'docker container run -d --rm --name my-demo-springboot -p 8082:8080 --network jenkins hoangledinh65/springboot-image:1.0'
-                sh 'echo hoangledinh65'
-            }
-        }
+        // stage('Deploying and Cleaning') {
+            // steps {
+                //echo 'Deploying and cleaning'
+                //sh 'docker image rm hoangledinh65/springboot-image:1.0 || echo "this image does not exist" '
+                //sh 'docker container stop my-demo-springboot || echo "this container does not exist" '
+                //sh 'docker network create jenkins || echo "this network exists"'
+                //sh 'echo y | docker container prune '
+                //sh 'echo y | docker image prune'
+                //sh 'docker container run -d --rm --name my-demo-springboot -p 8082:8080 --network jenkins hoangledinh65/springboot-image:1.0'
+                //sh 'echo hoangledinh65'
+            //}
+        //}
 
     }
 }
